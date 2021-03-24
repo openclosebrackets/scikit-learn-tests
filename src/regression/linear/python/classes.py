@@ -1,9 +1,13 @@
 import pandas as pd
 import matplotlib.pyplot as plt
+from kaggle.api.kaggle_api_extended import KaggleApi
 
-
+ 
 class database():
     def __init__(self, path):
+        api = KaggleApi()
+        api.authenticate()
+        api.dataset_download_files('mustafaali96/weight-height', path=path, unzip=True)
         self.path = path
         self.data = None
         self.read_data_csv()
